@@ -1,0 +1,93 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{mathptmx}
+\usepackage{labreport}
+\usepackage{lipsum}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{mathtools}
+\usepackage{gensymb}
+\usepackage{xcolor}
+
+\newcommand{\paren}[1]{\left(#1\right)}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\magn}[1]{\lVert#1\rVert}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+% Title Page
+\course{Physics 1420}
+\coursesection{C2}
+\title{Falling Body}
+\author{Matthew McCaskill}
+\partner{Stephen Hunt}
+\date{February 12, 2019}
+\supervisor{Madhurima Bhattacharjee}
+\reportabstract{The purpose of the experiment was to experimentally measure the acceleration due to gravity ($g$) on Earth. This was done by analyzing two balls' motions under a constant downward acceleration. A metal ball, Ball 1, was dropped from rest from eight different heights (between $81.99\pm\SI{0.04}{\centi\meter}$ and $33.69\pm\SI{0.02}{\centi\meter}$), with five trials for each height. A second metal ball, Ball 2, of different mass than Ball 1 was then dropped from the tallest and shortest heights in five trials each. The freefall time and drop height were recorded for each drop and average values were calculated. After analyzing the data using a height vs.\ time-squared scatter plot graph, the slope of the best fit line gave a measured value of $g$ to be $\SI{9.92}{\meter/\second^2}$. This value corresponds to a $1.12\%$ error from the accepted value of $\SI{9.81}{\meter/\second^2}.$ The results model both a linear relationship between drop height and time-squared and show the mass-independence of the acceleration due to gravity.}
+
+\begin{document}
+    \maketitle
+    
+    \advancepage{4}
+    
+    \begin{samplecalculations}
+    	\begin{calculation}{Derivation of an equation relating drop height and freefall time}%
+    		$$\text{Assume constant acceleration: }a_y=\frac{\Delta v_y}{\Delta t}=\frac{v_y-v_{y0}}{\Delta t}\Rightarrow v_y=v_{y0}+a_y\Delta t$$
+    		$$\text{From the definition of average velocity: }\bar{v}_y=\frac{\Delta y}{\Delta t}\Rightarrow\Delta y=\bar{v}_y\Delta t$$
+    		$$\text{For constant acceleration, $v_y$ changes linearly with time so $\bar{v}_y$ can be written as: }\bar{v}_y=\frac{v_{y0}+v_{y}}{2}$$
+    		$$\text{From the above: }\Delta y=\bar{v}_y\Delta t=\paren{\frac{v_{y0}+v_{y}}{2}}\Delta t=\paren{\frac{v_{y0}+\paren{v_{y0}+a_y\Delta t}}{2}}\Delta t=v_{y0}\Delta t+\frac12a_y\Delta t^2$$
+    		$$\text{Since at time $t_0=0$ the object is at rest ($v_{y0}=0$), we get: }\Rightarrow\Delta y=\frac12a_y\Delta t^2$$
+    		$$\text{Thus, }h=\frac12gt^2$$
+    	\end{calculation}
+    
+    	\begin{calculation}{Slope of the best-fit line}%
+    		$$m=\frac{\Delta h}{\Delta t^2}=\frac{\SI{86.05}{\centi\meter}-\SI{30.00}{\centi\meter}}{\SI{0.176}{\second^2}-\SI{0.063}{\second^2}}=\frac{\SI{56.06}{\centi\meter}}{\SI{0.113}{\second^2}}=\SI{496}{\centi\meter/\second^2}$$
+    	\end{calculation}
+    
+    	\begin{calculation}{Measured acceleration due to gravity, $g_m$}%
+    		$$\text{From Sample Calculation 1: }h=\frac12gt^2\Rightarrow \frac{\Delta h}{\Delta t^2}=\frac12g_m\Rightarrow g_m=2m$$
+    		$$g_m=2\paren{\SI{496}{\centi\meter/\second^2}}\paren{\frac{\SI{1}{\meter}}{\SI{100}{\centi\meter}}}=\SI{9.92}{\meter/\second^2}$$
+    	\end{calculation}
+    
+    	\begin{calculation}{Standard Error: propagation of error in averages}%
+    		$$\delta\bar{h}=\pm\sqrt{\frac{1}{N(N-1)}\sum_{i=1}^N(h_i-\bar h)^2}$$
+    		$$\bar h=\frac{1}{N}\sum_{i=1}^Nh_i=\frac15\paren{\SI{82.10}{\centi\meter}+\SI{82.00}{\centi\meter}+\SI{82.00}{\centi\meter}+\SI{82.00}{\centi\meter}+\SI{81.85}{\centi\meter}}=\SI{81.99}{\centi\meter}$$
+    		$$\delta\bar h=\pm\sqrt{\frac{1}{20}\left[
+	    			\begin{aligned}
+	    				\paren{\SI{82.10}{\centi\meter} -\SI{81.99}{\centi\meter}}^2&+\paren{\SI{82.00}{\centi\meter}-\SI{81.99}{\centi\meter}}^2+\paren{\SI{82.00}{\centi\meter}-\SI{81.99}{\centi\meter}}^2\\
+	    				 &+\paren{\SI{82.00}{\centi\meter}-\SI{81.99}{\centi\meter}}^2+\paren{\SI{81.85}{\centi\meter}-\SI{81.99}{\centi\meter}}^2
+	    			\end{aligned}
+    			\right]}$$
+    		$$\delta\bar h=\pm\SI{0.04}{\centi\meter}$$
+    	\end{calculation}
+    
+   		\pagebreak
+   
+    	\begin{calculation}{Uncertainty in time squared}%
+    		$$\delta\paren{t^2}=\pm2\bar t\cdot\delta t$$
+    		$$\delta\paren{t^2}=\pm2\paren{\SI{0.408}{\second}}\paren{\SI{0.001}{\second}}=\pm\SI{0.0004}{\second^2}$$
+    	\end{calculation}
+    
+		\begin{calculation}{Percent error in $g_m$ compared to the accepted value of $g$}%
+			$$\text{\% Error}=\abs{\frac{\text{Accepted Value}-\text{Experimental Value}}{\text{Accepted Value}}}\times100\%=\abs{\frac{g-g_m}{g}}$$
+			$$\text{\% Error}=\abs{\frac{\SI{9.81}{\meter/\second^2}-\SI{9.92}{\meter/\second^2}}{{\SI{9.81}{\meter/\second^2}}}}\times100\%=1.12\%$$
+		\end{calculation}
+    \end{samplecalculations}
+
+	\advancepage{7}
+	
+	\begin{discussion}
+		After calculating the average heights, times, and time-squared values in Step 1 of Analysis, it was found that the freefall time remained fairly consistent between trials. This is supported by the data which shows the maximum standard error in average freefall time was $\SI{0.0004}{\second}$. In addition, a common trend in the data was that as the average drop height decreased, the average freefall time-squared decreased seemingly proportionally. This would suggest a linear relationship between drop height and time-squared, which was confirmed in Step 2 of Analysis.
+		
+		The best-fit line of the data in Step 2 of Analysis was both linear and lied closely to all Ball 1 data points. This suggests and confirms the observation in Step 1 that the drop height ($h$) and time-squared ($t^2$) variables are proportional. This observation supports the conclusion drawn from Sample Calculation 1, where it is shown that (neglecting air resistance) $h=\frac12gt^2$ or, $h\propto t^2$. The constant of proportionality, in this case, is equal to $\frac12g$. However, this value is also equal to the slope of a  drop height vs.\ freefall time squared graph. The slope of the graph was calculated to be $\SI{496}{\centi\meter/\second^2}$. Using this information, the value $g_m$ was calculated to be $\SI{9.92}{\meter/\second^2}$. Compared to the accepted value of $g$, $\SI{9.81}{\meter/\second^2}$, there is a $1.12\%$ error. 
+		
+		Interestingly, the Ball 2 data points also lie very close to the best-fit line, suggesting that the acceleration due to gravity is independent of an object's mass, size, and shape. This confirms the basic principle of physics saying that, according to Newton's law of universal gravitation, the force due to the gravity on Earth for a mass $m$ is $F_G=Gm_Em/r_E^2$. By Newton's Second Law, it can be shown that the acceleration due to gravity on Earth is $g=Gm_E/r_E^2$, which shows that the acceleration due to gravity is mass-independent.
+		
+		There are several possible influencing factors which may have affected the measured value of $g$ ($g_m$). The first is parallax with the meter stick when measuring the drop height. Due to the shape of both the meter stick and timing apparatus, it was impossible to place the meter stick directly against the ball. Thus, parallax may have affected each height measurement by up to $\SI{0.15}{\centi\meter}$. If such an error is compounded, it would cause the average height measurement to be greatly affected. In the graph, each data point would be shifted on the graph, possibly causing the best-fit line's slope and position to be affected. This can lead to two different outcomes. First, if each data point was affected in the same way (or not at all) by parallax, the slope of the line would be unaffected. The position of the best-fit line would be affected, but this effect is not relevant to this discussion because none of the calculations are dependent on this value. In contrast, if each data point was affected in a different way by parallax, the slope of the best-fit line would change, causing the value of $g_m$ to change as well.
+		
+		Another source of error which may have affected $g_m$ would be systematic error in the form of instrument drift in the timing apparatus. Many measurements were taking successively with the timer, which may have caused a slight drift in the accuracy of the latter measurements. If this is the case, each latter data point would be moved slightly along the horizontal axis of the graph, causing the slope and $g_m$ calculations to be affected. However, if such drift occurred before the experiment but not during it, only the vertical position of each data point (and, therefore, the best-fit line) would be affected. However, as discussed previously, $g_m$ would only be affected by a change in the slope of the best-fit line.
+		
+		Finally, random error may have been introduced with holder of the timing apparatus on the vertical rod. If this screw was not tightened properly or the apparatus was not properly secured in the holder, the holder may have shifted slightly on the rod each time after the ball was secured or dropped. The effects of this error would be realized in the average values for height and time. Although each trial would be accurate, the average would not be as accurate since the dropping mechanism may lower itself on the rod slightly after each trial. Compounded effects of this error would have minimal impact on the calculated value of $g_m$.
+	\end{discussion}
+    
+\end{document}          
